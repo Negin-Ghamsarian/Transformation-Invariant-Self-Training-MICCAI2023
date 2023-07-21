@@ -55,7 +55,7 @@ Ignored pseudo-labels during unsupervised loss computation are shown in turquois
 
 
 ## Citation
-If you use AdaptNet for your research, please cite our paper:
+If you use TI-ST for your research, please cite our paper:
 
 ```
 @inproceedings{ghamsarian2023TI-ST,
