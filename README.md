@@ -37,7 +37,7 @@ Ignored pseudo-labels during unsupervised loss computation are shown in turquois
 
 **Ablation study on the performance stability of TI-ST vs. ST across the different experimental segmentation tasks.**
 
-<img src="./Figures/ablation_stability.png" alt="Ablation study on the performance stability of TI-ST vs. ST across the different experimental segmentation tasks." width="1000">
+<img src="./Figures/ablation_stability10.png" alt="Ablation study on the performance stability of TI-ST vs. ST across the different experimental segmentation tasks." width="1000">
 
 ---
 
