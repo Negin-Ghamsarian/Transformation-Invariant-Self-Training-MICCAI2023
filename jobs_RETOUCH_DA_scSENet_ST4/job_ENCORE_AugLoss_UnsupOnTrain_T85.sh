@@ -1,8 +1,5 @@
 #!/bin/bash
 
-## DON'T USE SPACES AFTER COMMAS
-
-# You must specify a valid email address!
 #SBATCH --mail-user=negin.ghamsarian@unibe.ch
 # Mail on NONE, BEGIN, END, FAIL, REQUEUE, ALL
 #SBATCH --mail-type=FAIL,END
