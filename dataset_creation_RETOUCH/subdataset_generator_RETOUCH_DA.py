@@ -67,23 +67,22 @@ for i in range(len(folds_Topcon)):
     locals()['imgs_Topcon_semi_fold_' + str(i)] = []
     locals()['masks_Topcon_semi_fold_' + str(i)] = []
 
-    fold_topcon = folds_Topcon[i]
-    fold_spectralis = folds_Spectralis[i]
-    fold_semi_topcon = cases_Topcon
-    fold_test_spectralis = cases_Spectralis
+    fold_test_topcon = folds_Topcon[i]
+    fold_test_spectralis = folds_Spectralis[i]
+    fold_semi_topcon = cases_Topcon.copy()
+    fold_train_spectralis = cases_Spectralis.copy()
 
-    for k in range(len(fold_topcon)):
-        fold_semi_topcon.remove(fold_topcon[k])
+    for k in range(len(fold_test_topcon)):
+        fold_semi_topcon.remove(fold_test_topcon[k])
 
-    for k in range(len(fold_spectralis)):  
-        fold_test_spectralis.remove(fold_spectralis[k])  
+    for k in range(len(fold_test_spectralis)):
+        fold_train_spectralis.remove(fold_test_spectralis[k])
 
-
-    for j in range(len(fold_topcon)):
-        for f in glob.glob(Topcon_dir + image_dir + 'TRAIN0' + str(fold_topcon[j]) + '*.png'):
+    for j in range(len(fold_test_topcon)):
+        for f in glob.glob(Topcon_dir + image_dir + 'TRAIN0' + str(fold_test_topcon[j]) + '*.png'):
             locals()['imgs_Topcon_test_fold_' + str(i)].append(f)
 
-        for f in glob.glob(Topcon_dir + mask_dir + 'TRAIN0' + str(fold_topcon[j]) + '*.png'):
+        for f in glob.glob(Topcon_dir + mask_dir + 'TRAIN0' + str(fold_test_topcon[j]) + '*.png'):
             locals()['masks_Topcon_test_fold_' + str(i)].append(f)   
 
         locals()['imgs_Topcon_test_fold_' + str(i)].sort()
@@ -92,13 +91,11 @@ for i in range(len(folds_Topcon)):
         locals()['imgs_Topcon_test_fold_' + str(i)], locals()['masks_Topcon_test_fold_' + str(i)] \
             = ID_shuffler(locals()['imgs_Topcon_test_fold_' + str(i)], locals()['masks_Topcon_test_fold_' + str(i)]) 
 
-
-
-    for j in range(len(fold_spectralis)):    
-        for f in glob.glob(Spectralis_dir + image_dir + 'TRAIN0' + str(fold_spectralis[j]) + '*.png'):
+    for j in range(len(fold_train_spectralis)):
+        for f in glob.glob(Spectralis_dir + image_dir + 'TRAIN0' + str(fold_train_spectralis[j]) + '*.png'):
             locals()['imgs_Spectralis_train_fold_' + str(i)].append(f)    
 
-        for f in glob.glob(Spectralis_dir + mask_dir + 'TRAIN0' + str(fold_spectralis[j]) + '*.png'):
+        for f in glob.glob(Spectralis_dir + mask_dir + 'TRAIN0' + str(fold_train_spectralis[j]) + '*.png'):
             locals()['masks_Spectralis_train_fold_' + str(i)].append(f)     
 
         locals()['imgs_Spectralis_train_fold_' + str(i)].sort()  
@@ -108,8 +105,7 @@ for i in range(len(folds_Topcon)):
             = ID_shuffler(locals()['imgs_Spectralis_train_fold_' + str(i)], locals()['masks_Spectralis_train_fold_' + str(i)])
 
 
-
-    for j in range(len(fold_semi_topcon)): 
+    for j in range(len(fold_semi_topcon)):
 
         for f in glob.glob(Topcon_dir + image_dir + 'TRAIN0' + str(fold_semi_topcon[j]) + '*.png'):
             locals()['imgs_Topcon_semi_fold_' + str(i)].append(f)
@@ -122,7 +118,6 @@ for i in range(len(folds_Topcon)):
 
         locals()['imgs_Topcon_semi_fold_' + str(i)], locals()['masks_Topcon_semi_fold_' + str(i)] \
             = ID_shuffler(locals()['imgs_Topcon_semi_fold_' + str(i)], locals()['masks_Topcon_semi_fold_' + str(i)]) 
-
 
     for j in range(len(fold_test_spectralis)): 
 
