@@ -14,14 +14,7 @@ def ID_shuffler(list1, list2):
 
         return res1, res2
 
-def csv_saver(save_path, a, b, c, d, e, f, g, h, i, name='SpectralisVsTopcon'):
-
-        # print(f'len(a): {len(a)}')
-        # print(f'len(b): {len(b)}')
-        # print(f'len(c): {len(c)}')
-        # print(f'len(d): {len(d)}')
-        # print(f'len(e): {len(e)}')
-        # print(f'len(f): {len(f)}')
+def csv_saver(save_path, a, b, c, d, e, f, g, h, i, name='SpectralisVsTopcon4'):
 
         
 
@@ -47,9 +40,14 @@ Topcon_dir = '/storage/workspaces/artorg_aimi/ws_00000/Negin/RETOUCH/img_dataset
 cases_Topcon = [50, 51, 52, 53, 54, 56, 59, 60, 61, 62, 64, 65, 66, 67, 68, 70]
 folds_Topcon = [[50, 51, 52], [54, 56, 61], [62, 66, 67], [60, 68, 70]]
 
+
 Spectralis_dir = '/storage/workspaces/artorg_aimi/ws_00000/Negin/RETOUCH/img_dataset2/RETOUCH-TrainingSet-Spectralis/'
 cases_Spectralis = [25, 26, 27, 29, 30, 32, 33, 34, 36, 37, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48]
-folds_Spectralis = [[46, 47, 48, 26], [25, 27, 29, 30], [32, 33, 36, 43], [34, 39, 44, 45]]
+# folds_Spectralis = [[46, 47, 48, 26], [25, 27, 29, 30], [32, 33, 36, 43], [34, 39, 44, 45]]
+# folds_Spectralis = [[46, 47, 48, 26, 25, 27, 29, 30], [25, 27, 29, 30, 32, 33, 36, 43], [32, 33, 36, 43, 34, 39, 26, 45], [43, 39, 44, 45, 46, 47, 48, 26]]
+# folds_Spectralis = [[25, 27, 29, 30, 32, 33, 34, 36, 37, 39, 40, 41, 42, 43, 44, 45], [26, 32, 33, 34, 36, 37, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48], [25, 26, 27, 29, 30, 34, 37, 39, 40, 41, 42, 44, 45, 46, 47, 48], [25, 26, 27, 29, 30, 32, 33, 36, 37, 40, 41, 42, 43, 46, 47, 48]]
+folds_Spectralis = [[25, 26, 27, 29, 30, 32, 33, 36, 37, 40, 41, 42, 43, 44, 47, 48], [25, 26, 27, 29, 30, 34, 37, 39, 40, 41, 42, 44, 45, 46, 47, 48],
+[26, 32, 33, 34, 36, 37, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48], [25, 27, 29, 30, 32, 33, 34, 36, 37, 39, 40, 41, 42, 43, 44, 45]]
 
 image_dir = 'imgs_IRF/'
 mask_dir = 'IRF/'
@@ -69,13 +67,16 @@ for i in range(len(folds_Topcon)):
 
     fold_topcon = folds_Topcon[i]
     fold_spectralis = folds_Spectralis[i]
-    fold_semi_topcon = cases_Topcon
-    fold_test_spectralis = cases_Spectralis
+    fold_semi_topcon = cases_Topcon.copy()
+    fold_test_spectralis = cases_Spectralis.copy()
 
     for k in range(len(fold_topcon)):
         fold_semi_topcon.remove(fold_topcon[k])
 
     for k in range(len(fold_spectralis)):  
+        print(f'cases_Spectralis: {cases_Spectralis}')
+        print(f'fold_test_spectralis: {fold_test_spectralis}')
+        print(f'fold_spectralis[k]: {fold_spectralis[k]}')
         fold_test_spectralis.remove(fold_spectralis[k])  
 
 
